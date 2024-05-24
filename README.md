@@ -2,7 +2,7 @@
 
 This is the repository for ACL'24 paper: ***MentalManip: A Dataset For Fine-grained Analysis of Mental Manipulation in Conversations***.
 
-![Illustration](picture.png)
+<img src="picture.png" width="300">
 
 ## 1. Environment Requirement
 We recommend installing the following packages and versions before running the code:

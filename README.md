@@ -107,3 +107,16 @@ This code file contains functions to:
 - Draw ccdf of utterance number distribution.
 - Do sentiment analysis.
 - Draw embedding space.
+
+## Citation
+```angular2html
+@inproceedings{MentalManip,
+  title={MentalManip: A Dataset For Fine-grained Analysis of Mental Manipulation in Conversations},
+  author={Yuxin Wang,
+          Icory Yang,
+          Saeed Hassanpour,
+          Soroush Vosoughi},
+  booktitle={the Association for Computational Linguistics},
+  year={2024}
+}
+```

@@ -3,7 +3,7 @@
 This is the repository for ACL'24 paper: ***MentalManip: A Dataset For Fine-grained Analysis of Mental Manipulation in Conversations***.
 
 <p align="center">
-<img src="picture.png" width="500">
+<img src="picture.png" width="600">
 </p>
 
 ## 1. Environment Requirement

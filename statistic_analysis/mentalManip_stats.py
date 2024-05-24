@@ -469,8 +469,8 @@ def get_stats(file):
 
 
 if __name__ == '__main__':
-    file1 = "../metalmanip_dataset/mentalmanip_con.csv"
-    file2 = "../metalmanip_dataset/mentalmanip_maj.csv"
+    file1 = "../mentalmanip_dataset/mentalmanip_con.csv"
+    file2 = "../mentalmanip_dataset/mentalmanip_maj.csv"
     (dialogue_list_1, manip_list_1, tech_list_1, vul_list_1, manip_dialogues_1,
      nonmanip_dialogues_1, tech_df1, vul_df1) = get_stats(file1)
     (dialogue_list_2, manip_list_2, tech_list_2, vul_list_2, manip_dialogues_2,

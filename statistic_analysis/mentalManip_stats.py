@@ -4,7 +4,7 @@ import seaborn as sns
 from collections import Counter
 import pandas as pd
 import matplotlib.pyplot as plt
-# from sentence_transformers import SentenceTransformer
+from sentence_transformers import SentenceTransformer
 from transformers import pipeline, AutoTokenizer
 import torch
 
@@ -13,55 +13,6 @@ import re
 from tqdm import tqdm
 from sklearn.manifold import TSNE
 from sklearn.preprocessing import StandardScaler
-
-
-# def generate_toy_samples():
-#     techniques = ["Denial or Minimization", "Rationalization", "Feigning innocence",
-#                   "Feigning confusion", "Intimidation", "Shaming",
-#                   "Accusation", "Ignorance", "Playing the victim",
-#                   "Playing the servant", "Seduction", "Bandwagon effect"]
-#     tech_pob = [0.1, 0.15, 0.1, 0.1, 0.05, 0.05,
-#                 0.05, 0.05, 0.1, 0.1, 0.05, 0.1]
-#     vulnerabilities = ["Over-responsibility", "Overthinking", "Naivete",
-#                        "Low self-esteem", "Dependency"]
-#     vul_pob = [0.3, 0.1, 0.25, 0.15, 0.2]
-#
-#     orig_file = "data/labeled/lexicon_bert_merged_result.csv"
-#     toy_file = "data/toy_samples.csv"
-#     with open(toy_file, 'w') as f_write:
-#         columns = ["Dialogue", "Manipulative", "Technique", "Vulnerability"]
-#         writer = csv.writer(f_write, quoting=csv.QUOTE_MINIMAL)
-#         writer.writerow(columns)
-#
-#         with open(orig_file, 'r') as f_read:
-#             reader = csv.reader(f_read)
-#             for i, row in enumerate(reader):
-#                 if i == 0:
-#                     continue
-#                 dialogue = row[0]
-#                 # generate random value
-#                 values = [0, 1]
-#                 probabilities = [0.5, 0.5]
-#                 flag_manipulative = np.random.choice(values, size=1, p=probabilities)
-#                 if flag_manipulative[0] == 1:
-#                     flag_num_technique = np.random.randint(1, 4)
-#                     flag_techniques = np.random.choice(techniques, size=flag_num_technique,
-#                                                        p=tech_pob, replace=False)
-#                     flag_num_vulnerability = np.random.choice([1, 2], size=1, p=[0.8, 0.2])
-#                     flag_vulnerabilities = np.random.choice(vulnerabilities, size=flag_num_vulnerability[0],
-#                                                             p=vul_pob, replace=False)
-#                     flag_manipulative = str(flag_manipulative[0])
-#                     flag_techniques = ','.join(flag_techniques)
-#                     flag_vulnerabilities = ','.join(flag_vulnerabilities)
-#                 else:
-#                     flag_manipulative = str(flag_manipulative[0])
-#                     flag_techniques = ""
-#                     flag_vulnerabilities = ""
-#
-#                 writer.writerow([dialogue,
-#                                  flag_manipulative,
-#                                  flag_techniques,
-#                                  flag_vulnerabilities])
 
 
 def preprocessing(dialogues):
@@ -82,22 +33,6 @@ def embedding_space(dialogues_list):
 
     manip_dialogues, nonmanip_dialogues = dialogues_list[0], dialogues_list[1]
     select_size = min(len(manip_dialogues), len(nonmanip_dialogues))
-
-    # selected_manip_dialogues = np.random.choice(manip_dialogues, size=select_size, replace=False)
-    # selected_nonmanip_dialogues = np.random.choice(nonmanip_dialogues, size=select_size, replace=False)
-    # processed_manip_dialogues = preprocessing(selected_manip_dialogues)
-    # processed_nonmanip_dialogues = preprocessing(selected_nonmanip_dialogues)
-    # manip_embeddings = model.encode(processed_manip_dialogues)
-    # nonmanip_embeddings = model.encode(processed_nonmanip_dialogues)
-    # Reduce dimensions using t-SNE
-    # tsne = TSNE(n_components=2, perplexity=20, n_iter=1000, verbose=0)
-    # # concate manip and non-manip embeddings
-    # embeddings = np.concatenate((manip_embeddings, nonmanip_embeddings), axis=0)
-    # two_dim_embeddings = tsne.fit_transform(np.array(embeddings))
-    #
-    # # Prepare DataFrame for Seaborn
-    # df = pd.DataFrame(two_dim_embeddings, columns=['x', 'y'])
-    # df['dataset'] = ['Manipulative']*len(manip_dialogues) + ['Non-manipulative']*len(nonmanip_dialogues)
 
     df_list = []
     df_name_list = ['Manipulative', 'Non-manipulative']
@@ -392,80 +327,6 @@ def get_stats(file):
     vul_df = vul_df.sort_values(by='count', ascending=False)
 
     return dialogue_list, manip_list, tech_list, vul_list, manip_dialogues, nonmanip_dialogues, tech_df, vul_df
-
-
-# def temp(file):
-#     dialogue_list = []
-#     manip_list = []
-#     tech_list = []
-#     vul_list = []
-#     manip_dialogues = []
-#     nonmanip_dialogues = []
-#     with open(file, 'r', newline='', encoding='utf-8') as infile:
-#         content = csv.reader(infile, delimiter=',', quoting=csv.QUOTE_MINIMAL)
-#         for index, row in enumerate(content):
-#             if index == 0:
-#                 continue
-#             id, dialogue, manip, tech, vul = row[:5]
-#             dialogue_list.append(dialogue)
-#             manip_list.append(manip)
-#             tech_list.append(tech)
-#             vul_list.append(vul)
-#             if manip == "1":
-#                 manip_dialogues.append(dialogue)
-#             else:
-#                 nonmanip_dialogues.append(dialogue)
-#
-#     indi_tech_list = []
-#     for t in tech_list:
-#         if t != "":
-#             indi_tech_list.extend(t.split(','))
-#     tech_dic = Counter(indi_tech_list)
-#     tech_df = pd.DataFrame.from_dict(tech_dic, orient='index').reset_index()
-#     tech_df.columns = ['label', 'count']
-#     tech_df = tech_df.sort_values(by='count', ascending=False)
-#
-#     indi_vul_list = []
-#     for v in vul_list:
-#         if v != "":
-#             indi_vul_list.extend(v.split(','))
-#     vul_dic = Counter(indi_vul_list)
-#     vul_df = pd.DataFrame.from_dict(vul_dic, orient='index').reset_index()
-#     vul_df.columns = ['label', 'count']
-#     vul_df = vul_df.sort_values(by='count', ascending=False)
-#
-#     draw_plot(tech_df, "Count of different techniques", "draw_techniques.pdf",
-#               y_height=800, font_size=14)
-#     draw_plot(vul_df, "Count of different vulnerabilities", "draw_vulnerabilities.pdf",
-#               y_height=1000, font_size=14)
-#
-#     print("----------Embedding Space----------")
-#     size = 500
-#     np.random.seed(11)
-#     manip_dialogues = np.random.choice(manip_dialogues, size, replace=False)
-#     nonmanip_dialogues = np.random.choice(nonmanip_dialogues, size, replace=False)
-#
-#     embedding_space([manip_dialogues, nonmanip_dialogues])
-#     print(f"embedding space plotting finished!")
-#
-#     print("----------Sentiment Scores----------")
-#     # sentiment_scores = sentiment_analysis(dialogue_list)
-#     # senti_df = pd.DataFrame({'dialogue': dialogue_list, 'senti': sentiment_scores,
-#     #                          'manip': manip_list})
-#     # senti_df.to_csv("data/toy_samples_sentiment_scores.csv", index=False)
-#
-#     senti_df = pd.read_csv("data/toy_samples_sentiment_scores.csv")
-#     senti_df['manip'] = senti_df['manip'].replace(1, 'Manipulative')
-#     senti_df['manip'] = senti_df['manip'].replace(0, 'Non-manipulative')
-#     senti_df['senti'] = pd.Categorical(senti_df['senti'],
-#                                        ['joy', 'anger', 'sadness', 'fear', 'love', 'surprise'])
-#     draw_sentiment_plot(senti_df, "Emotion distribution", "draw_sentiment_scores.pdf",
-#                         y_height=1000, font_size=12)
-#
-#     print("----------Label Correlation Heatmap----------")
-#     draw_heatmap([tech_list], flag='tech')
-#     draw_heatmap([vul_list], flag='vul')
-#     draw_heatmap([tech_list, vul_list], flag='tech_vul')
 
 
 if __name__ == '__main__':

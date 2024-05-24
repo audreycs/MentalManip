@@ -5,7 +5,7 @@ This is the repository for ACL'24 paper: *MentalManip: A Dataset For Fine-graine
 ## 1. Environment Requirement
 We recommend installing the following packages and versions before running the code:
 
-| Package               | Version |
+| Packages              | Version |
 |-----------------------|---------|
 | Pytorch               | 2.1.2   |
 | Transformers          | 4.36.2  |
@@ -76,3 +76,30 @@ This dataset contains final labels which we use Majority agreement strategy to g
 and for techniques and vulnerabilities, we use the same rule as Consensus agreement.
 
 The columns in `mentalmanip_maj.csv` are also the same as `mentalmanip_con.csv`.
+
+## 4. Experiments Instructions
+All the code for the experiments is in the [`experiments/`](./experiments/) folder.
+
+We provide example command lines in [run.sh](./experiments/manipulation_detection/run.sh) files for running the detection and classification tasks.
+
+### Important Notes
+1. Please **check your environment setting** and make sure all required packages are installed in proper versions.
+2. Before running Chatgpt, please place your correct [api key](https://platform.openai.com/settings/profile?tab=api-keys) in the code.
+3. Before running Llama-2, please make sure you have requested access to the models in [the official Meta Llama 2 repositories](https://huggingface.co/meta-llama).
+
+## 5. Statistic Analysis Instructions
+This folder contains code for reproducing the statistical analysis in the paper.
+
+### 1) [mentalManip_stats.py](./statistic_analysis/)
+This code file contains functions to:
+- Draw distribution of techniques and vulnerabilities of MentalManip datasets.
+- Draw distribution of sentiment scores of MentalManip datasets.
+- Draw con-currence heat maps of techniques and vulnerabilities.
+- Draw embedding space.
+
+### 2) [statistics_comparison.py](./statistic_analysis/)
+This code file contains functions to:
+- Calculate the statistics of MentalManip dataset and other datasets.
+- Draw ccdf of utterance number distribution.
+- Do sentiment analysis.
+- Draw embedding space.

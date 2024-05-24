@@ -61,7 +61,7 @@ if __name__ == '__main__':
     parser.add_argument('--top_p', default=0.5, type=float)
     parser.add_argument('--penal', default=0.0, type=float)
     parser.add_argument('--log_dir', default='./logs', type=str)
-    parser.add_argument('--data', default='../dataset/new_processed_mentalmanip_maj_final.csv', type=str)
+    parser.add_argument('--data', default='../datasets/mentalmanip_maj.csv', type=str)
     args = parser.parse_args()
 
     if os.path.exists(args.log_dir) is False:
@@ -80,6 +80,7 @@ if __name__ == '__main__':
 
     if args.model == 'chatgpt':
         modelChatgpt = ChatGPTModel(gpt_model="gpt-4-1106-preview",
+                                    api_key="",  # Please provide your OpenAI API key
                                     temperature=0.1,
                                     top_p=0.5,
                                     penal=0.0,

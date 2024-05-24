@@ -63,6 +63,7 @@ def prediction(model, test_data):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='finetune')
     parser.add_argument('--model', default='llama-13b', type=str)
+    parser.add_argument('--mode', default='train', type=str)  # 'train' or 'eval'
     parser.add_argument('--temp', default=0.1, type=float)
     parser.add_argument('--top_p', default=0.5, type=float)
     parser.add_argument('--penal', default=0.0, type=float)
@@ -72,6 +73,7 @@ if __name__ == '__main__':
     parser.add_argument('--valid_batch_size', default=8, type=int)
     parser.add_argument('--lr', default=0.0001, type=float)
     parser.add_argument('--train_data', default='Dreaddit', type=str)
+    parser.add_argument('--eval_data', default='mentalmanip_con', type=str)
     args = parser.parse_args()
 
     if os.path.exists(args.log_dir) is False:
@@ -80,13 +82,14 @@ if __name__ == '__main__':
     set_logging(args, parser.description)
     show_args(args)
 
-    manip_dataset = LoadManipDataset(file_name='../dataset/new_processed_mentalmanip_con_final.csv',
+    manip_dataset = LoadManipDataset(file_name=f'../datasets/{args.eval_data}.csv',
                                      train_ratio=0.6,
                                      valid_ratio=0.2,
                                      test_ratio=0.2)
 
     if args.train_data != 'mentalmanip':
-        train_dataset = LoadOtherDataset(file_name='../dataset/'+args.train_data+'/dataset.csv')
+        train_dataset = LoadOtherDataset(file_name='../datasets/'+args.train_data+'/dataset.csv')
+        # Optional: Downsample the training data to 5000 samples to reduce training time
         if len(train_dataset.df) >= 5000:
             cutted_size = 5000
             logging.info(f"-----Downsampling Dataset {args.train_data} to size {cutted_size}-----")
@@ -95,7 +98,6 @@ if __name__ == '__main__':
     else:
         train_data = manip_dataset.df_train
         valid_data = manip_dataset.df_valid
-        # train_data = train_data.iloc[:500]
     test_data = manip_dataset.df_test
 
     logging.info(f"-----Finetuning Data Size Information-----")
@@ -109,43 +111,49 @@ if __name__ == '__main__':
         if '13b' in args.model:
             llama_model = "Llama-2-13b-chat-hf"
 
-        # modelLlama = LlamaModel(load_from_local=False,
-        #                         model=llama_model,
-        #                         temperature=0.6,
-        #                         top_p=0.9,
-        #                         top_k=50,
-        #                         repetition_penalty=1.2,
-        #                         max_new_tokens=1024,
-        #                         max_input_token_length=4096,
-        #                         ft_output_dir='llama_ft_maj/'+args.train_data)
-        # modelLlama.finetuning(train_data,
-        #                       valid_data,
-        #                       test_data,
-        #                       epochs=args.epoch,
-        #                       train_batch_size=args.train_batch_size,
-        #                       lr=args.lr)
-
-        modelLlama = LlamaModel(load_from_local=True,
-                                model='llama_ft_maj/'+args.train_data,
-                                temperature=0.6,
-                                top_p=0.9,
-                                top_k=50,
-                                repetition_penalty=1.2,
-                                max_new_tokens=1024,
-                                max_input_token_length=4096,
-                                ft_output_dir='llama_ft_maj/'+args.train_data)
-        prediction(modelLlama, test_data)
+        if args.mode == 'train':
+            modelLlama = LlamaModel(load_from_local=False,
+                                    model=llama_model,
+                                    temperature=0.6,
+                                    top_p=0.9,
+                                    top_k=50,
+                                    repetition_penalty=1.2,
+                                    max_new_tokens=1024,
+                                    max_input_token_length=4096,
+                                    ft_output_dir='llama_ft/'+args.train_data)
+            modelLlama.finetuning(train_data,
+                                  valid_data,
+                                  test_data,
+                                  epochs=args.epoch,
+                                  train_batch_size=args.train_batch_size,
+                                  lr=args.lr)
+        elif args.mode == 'eval':
+            modelLlama = LlamaModel(load_from_local=True,
+                                    model='llama_ft/'+args.train_data,
+                                    temperature=0.6,
+                                    top_p=0.9,
+                                    top_k=50,
+                                    repetition_penalty=1.2,
+                                    max_new_tokens=1024,
+                                    max_input_token_length=4096,
+                                    ft_output_dir='llama_ft/'+args.train_data)
+            prediction(modelLlama, test_data)
+        else:
+            raise ValueError("Invalid mode argument. Please choose 'train' or 'eval'.")
 
     elif 'roberta' in args.model:
         roberta_model = "roberta-base"
         if 'large' in args.model:
             roberta_model = "roberta-large"
 
-        modelRoBERTa = RoBERTaModel(model=roberta_model,
-                                    max_length=512,
-                                    train_batch_size=args.train_batch_size,
-                                    valid_batch_size=args.valid_batch_size,
-                                    epochs=args.epoch,
-                                    learning_rate=args.lr,
-                                    output_dir='roberta_ft/'+args.train_data)
-        modelRoBERTa.finetuning(train_data, valid_data, test_data)
+        if args.mode == 'train' or args.mode == 'eval':
+            modelRoBERTa = RoBERTaModel(model=roberta_model,
+                                        max_length=512,
+                                        train_batch_size=args.train_batch_size,
+                                        valid_batch_size=args.valid_batch_size,
+                                        epochs=args.epoch,
+                                        learning_rate=args.lr,
+                                        output_dir='roberta_ft/'+args.train_data)
+            modelRoBERTa.finetuning(train_data, valid_data, test_data)
+        else:
+            raise ValueError("Invalid mode argument. Please choose 'train' or 'eval'.")

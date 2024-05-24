@@ -5,11 +5,15 @@ import logging
 class ChatGPTModel:
     def __init__(self,
                  gpt_model,
+                 api_key,
                  temperature,
                  top_p,
                  penal,
                  max_input_token_length):
-        self.api_key = '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'
+        self.api_key = api_key
+        if api_key == "":
+            logging.info('Error: OpenAI API key is empty.')
+            exit(1)
         self.model_id = gpt_model
         self.client = OpenAI(api_key=self.api_key)
         self.gpt_model = gpt_model

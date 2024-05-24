@@ -1,4 +1,4 @@
-# MentalManip Dataset
+# Datasets and Codes for Mental Manipulation Analysis
 
 This is the repository for ACL'24 paper: *MentalManip: A Dataset For Fine-grained Analysis of Mental Manipulation in Conversations*.
 

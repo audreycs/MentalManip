@@ -4,22 +4,25 @@ This is the repository for ACL'24 paper: *MentalManip: A Dataset For Fine-graine
 
 ## 1. Environment Requirement
 We recommend installing the following packages and versions before running the code:
-- Pytorch: 2.1.2
-- Transformers: 4.36.2
-- Tokenizers: 0.15.0
-- Openai: 1.6.1
-- Scipy: 1.11.4
-- Seaborn: 0.12.2
-- Sentence-transformers: 2.3.0
-- tqdm: 4.65.0
-- Pandas: 2.1.4
-- scikit-learn: 1.2.2
-- peft: 0.7.1
-- trl: 0.7.7
-  
+
+| Package               | Version |
+|-----------------------|---------|
+| Pytorch               | 2.1.2   |
+| Transformers          | 4.36.2  |
+| Tokenizers            | 0.15.0  |
+| Openai                | 1.6.1   |
+| Scipy                 | 1.11.4  |
+| Seaborn               | 0.12.2  |
+| Sentence-transformers | 2.3.0   |
+| tqdm                  | 4.65.0  |
+| Pandas                | 2.1.4   |
+| scikit-learn          | 1.2.2   |
+| peft                  | 0.7.1   |
+| trl                   | 0.7.7   |
+
 
 ## 2. File Structure of This Repository
-```
+```shell
 MentalManip/
 ├── README.md
 ├── mentalmanip_dataset/  # contains the final MentalManip dataset
@@ -33,7 +36,7 @@ MentalManip/
 ## 3. Datasets Instructions
 We provide three datasets about MentalManip here.
 
-### 1) mentalManip_detailed.csv
+### 1) [mentalManip_detailed.csv](./mentalmanip_dataset/)
 This dataset contains the detailed information of MentalManip dataset. 
 Each row contains one dialogue and its three annotors' annotations.
 The columns are:
@@ -50,7 +53,7 @@ The columns are:
 - `confidence_1`: the confidence score of annotator 1 (1 to 5).
 - (following columns are similar to annotator 1)
 
-### 2) mentalmanip_con.csv
+### 2) [mentalmanip_con.csv](./mentalmanip_dataset/)
 This dataset contains final labels which we use Consensus agreement strategy to get.
 
 > **Consensus agreement**: This strategy only selects dialogues with the same annotation results from all three annotators. The accordant result becomes the final label.
@@ -65,7 +68,7 @@ The columns in `mentalmanip_con.csv` are:
 - `Technique`: the technique result (seperated by comma).
 - `Vulnerability`: the vulnerability result (seperated by comma).
 
-### 3) mentalmanip_maj.csv
+### 3) [mentalmanip_maj.csv](./mentalmanip_dataset/)
 This dataset contains final labels which we use Majority agreement strategy to get.
 
 > **Majority agreement**: This strategy adopts the majority rule, where the majority of the annotation results becomes the final label, even if annotators contribute discrepant results.

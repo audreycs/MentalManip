@@ -84,7 +84,27 @@ The columns in `mentalmanip_maj.csv` are also the same as `mentalmanip_con.csv`.
 ## 4. Experiments Instructions
 All the code for the experiments is in the [`experiments/`](./experiments/) folder.
 
-We provide example command lines in [run.sh](./experiments/manipulation_detection/run.sh) files for running the detection and classification tasks.
+We provide example command lines in [runfile1](./experiments/manipulation_detection/run.sh) and [runfile2](./experiments/technique_vulnerability/run.sh) files for running the detection and classification tasks. 
+
+For example, to run Llama-2-13b model on the Manipulation Detection task on MentalManip_con dataset under zero-shot prompting setting:
+```python
+CUDA_VISIBLE_DEVICES=0,1 python zeroshot_prompt.py --model llama-13b \
+                         --data ../datasets/mentalmanip_con.csv \
+                         --log_dir ./logs
+```
+
+To fine-tuning llama-2-13b model on MentalManip_con dataset (first train and save model, then evaluate)
+```python
+CUDA_VISIBLE_DEVICES=0,1 python finetune.py --model llama-13b \
+                         --mode train \
+                         --eval_data mentalmanip_con \
+                         --train_data mentalmanip 
+
+CUDA_VISIBLE_DEVICES=0,1 python finetune.py --model llama-13b \
+                         --mode eval \
+                         --eval_data mentalmanip_con \
+                         --train_data mentalmanip 
+```
 
 ### Important Notes
 1. Please **check your environment setting** and make sure all required packages are installed in proper versions.
@@ -109,7 +129,7 @@ This code file contains functions to:
 - Draw embedding space.
 
 ## Citation
-```angular2html
+```bibtex
 @inproceedings{MentalManip,
   title={MentalManip: A Dataset For Fine-grained Analysis of Mental Manipulation in Conversations},
   author={Yuxin Wang,

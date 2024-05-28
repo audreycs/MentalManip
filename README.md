@@ -22,7 +22,7 @@ MentalManip/
 ├── statistic_analysis/  # Code for generating statistical figures in the paper
 ```
 
-## 2. Datasets Instructions
+## 2. Datasets Description
 We provide three datasets about MentalManip here.
 
 ### 1) [mentalManip_detailed.csv](./mentalmanip_dataset/)

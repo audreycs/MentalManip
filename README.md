@@ -2,11 +2,31 @@
 
 This is the repository for ACL'24 accepted paper: ***MentalManip: A Dataset For Fine-grained Analysis of Mental Manipulation in Conversations*** [[arxiv]](https://arxiv.org/abs/2405.16584).
 
-<p align="center">
-<img src="figure.png" width="500">
-</p>
+<div align="center">
+  <figure>
+    <img src="figure.png" alt="An example of detecting mental manipulation in dialogue using large language models." style="width:50%"> 
+    <figcaption>An example of detecting mental manipulation in dialogue using large language models.</figcaption>
+  </figure>
+</div>
 
-## 1. Environment Requirement
+  <br>
+  
+### **The MentalManip datasets are available [here](./mentalmanip_dataset/)**.
+
+----
+## 1. File Structure of This Repository
+```tree
+MentalManip/
+├── README.md
+├── mentalmanip_dataset/  # contains the final MentalManip dataset
+├── experiments/  # Code for all the experiments
+│   ├── datasets/  # Datasets for the experiments
+│   ├── manipulation_detection/  # Code for the manipulation detection task
+│   ├── technique_vulnerability/  # Code for the technique and vulnerability classification task
+├── statistic_analysis/  # Code for generating statistical figures in the paper
+```
+
+## 2. To run the experiments
 We recommend installing the following packages and versions before running the code:
 
 | Packages              | Version |
@@ -27,18 +47,6 @@ We recommend installing the following packages and versions before running the c
 If you use conda to manage environment, you can add these channels to ensure you can download the above packages.
 ```bash
 $ conda config --add channels conda-forge pytorch nvidia
-```
-
-## 2. File Structure of This Repository
-```shell
-MentalManip/
-├── README.md
-├── mentalmanip_dataset/  # contains the final MentalManip dataset
-├── experiments/  # Code for all the experiments
-│   ├── datasets/  # Datasets for the experiments
-│   ├── manipulation_detection/  # Code for the manipulation detection task
-│   ├── technique_vulnerability/  # Code for the technique and vulnerability classification task
-├── statistic_analysis/  # Code for generating statistical figures in the paper
 ```
 
 ## 3. Datasets Instructions

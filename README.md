@@ -137,7 +137,7 @@ This code file contains functions to:
 @inproceedings{MentalManip,
   title={MentalManip: A Dataset For Fine-grained Analysis of Mental Manipulation in Conversations},
   author={Yuxin Wang,
-          Icory Yang,
+          Ivory Yang,
           Saeed Hassanpour,
           Soroush Vosoughi},
   booktitle={the Association for Computational Linguistics},

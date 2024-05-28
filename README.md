@@ -24,6 +24,10 @@ We recommend installing the following packages and versions before running the c
 | peft                  | 0.7.1   |
 | trl                   | 0.7.7   |
 
+If you use conda to manage environment, you can add these channels to ensure you can download the above packages.
+```bash
+$ conda config --add channels conda-forge pytorch nvidia
+```
 
 ## 2. File Structure of This Repository
 ```shell
@@ -88,22 +92,22 @@ We provide example command lines in [runfile1](./experiments/manipulation_detect
 
 For example, to run Llama-2-13b model on the Manipulation Detection task on MentalManip_con dataset under zero-shot prompting setting:
 ```python
-CUDA_VISIBLE_DEVICES=0,1 python zeroshot_prompt.py --model llama-13b \
-                         --data ../datasets/mentalmanip_con.csv \
-                         --log_dir ./logs
+$ CUDA_VISIBLE_DEVICES=0,1 python zeroshot_prompt.py --model llama-13b \
+                          --data ../datasets/mentalmanip_con.csv \
+                          --log_dir ./logs
 ```
 
 To fine-tuning llama-2-13b model on MentalManip_con dataset (first train and save model, then evaluate)
 ```python
-CUDA_VISIBLE_DEVICES=0,1 python finetune.py --model llama-13b \
-                         --mode train \
-                         --eval_data mentalmanip_con \
-                         --train_data mentalmanip 
+$ CUDA_VISIBLE_DEVICES=0,1 python finetune.py --model llama-13b \
+                          --mode train \
+                          --eval_data mentalmanip_con \
+                          --train_data mentalmanip 
 
-CUDA_VISIBLE_DEVICES=0,1 python finetune.py --model llama-13b \
-                         --mode eval \
-                         --eval_data mentalmanip_con \
-                         --train_data mentalmanip 
+$ CUDA_VISIBLE_DEVICES=0,1 python finetune.py --model llama-13b \
+                          --mode eval \
+                          --eval_data mentalmanip_con \
+                          --train_data mentalmanip 
 ```
 
 ### Important Notes

@@ -1,6 +1,6 @@
 ## Datasets Description
 
-### 1) [mentalManip_detailed.csv](./mentalmanip_dataset/)
+### 1) mentalManip_detailed.csv
 This dataset contains the detailed information of MentalManip dataset. 
 Each row contains one dialogue and its three annotors' annotations.
 The columns are:
@@ -17,7 +17,7 @@ The columns are:
 - `confidence_1`: the confidence score of annotator 1 (1 to 5).
 - (following columns are similar to annotator 1)
 
-### 2) [mentalmanip_con.csv](./mentalmanip_dataset/)
+### 2) mentalmanip_con.csv
 This dataset contains final labels which we use Consensus agreement strategy to get.
 
 > **Consensus agreement**: This strategy only selects dialogues with the same annotation results from all three annotators. The accordant result becomes the final label.
@@ -32,7 +32,7 @@ The columns in `mentalmanip_con.csv` are:
 - `Technique`: the technique result (seperated by comma).
 - `Vulnerability`: the vulnerability result (seperated by comma).
 
-### 3) [mentalmanip_maj.csv](./mentalmanip_dataset/)
+### 3) mentalmanip_maj.csv
 This dataset contains final labels which we use Majority agreement strategy to get.
 
 > **Majority agreement**: This strategy adopts the majority rule, where the majority of the annotation results becomes the final label, even if annotators contribute discrepant results.

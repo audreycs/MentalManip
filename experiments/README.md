@@ -25,7 +25,7 @@ $ conda config --add channels conda-forge pytorch nvidia
 ### 2. Command lines
 All the code for the experiments is in the [`experiments/`](./experiments/) folder.
 
-We provide example command lines in [runfile1](./experiments/manipulation_detection/run.sh) and [runfile2](./experiments/technique_vulnerability/run.sh) files for running the detection and classification tasks. 
+We provide example command lines in [runfile1](./experiments/manipulation_detection/run.sh) and [runfile2](./experiments/technique_vulnerability/run.sh) files for running the binary detection and multi-label classification tasks. 
 
 For example, to run Llama-2-13b model on the Manipulation Detection task on MentalManip_con dataset under zero-shot prompting setting:
 ```python

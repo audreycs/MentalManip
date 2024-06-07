@@ -2,6 +2,8 @@
 
 This is the repository for ACL'24 accepted paper: **MentalManip: A Dataset For Fine-grained Analysis of Mental Manipulation in Conversations** [[arxiv]](https://arxiv.org/abs/2405.16584).
 
+> Mental manipulation, a significant form of abuse in interpersonal conversations, presents a challenge to identify due to its context-dependent and often subtle nature. The detection of manipulative language is essential for protecting potential victims, yet the field of Natural Language Processing (NLP) currently faces a scarcity of resources and research on this topic. Our study addresses this gap by introducing a new dataset, named MentalManip, which consists of 4,000 annotated movie dialogues. This dataset enables a comprehensive analysis of mental manipulation, pinpointing both the techniques utilized for manipulation and the vulnerabilities targeted in victims. Our research further explores the effectiveness of leading-edge models in recognizing manipulative dialogue and its components through a series of experiments with various configurations. The results demonstrate that these models inadequately identify and categorize manipulative content. Attempts to improve their performance by fine-tuning with existing datasets on mental health and toxicity have not overcome these limitations. We anticipate that MentalManip will stimulate further research, leading to progress in both understanding and mitigating the impact of mental manipulation in conversations.
+
 ### :arrow_right: **The MentalManip datasets are available [here](./mentalmanip_dataset/)**.
 
 <div align="center">

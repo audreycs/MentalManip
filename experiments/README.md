@@ -49,5 +49,5 @@ $ CUDA_VISIBLE_DEVICES=0,1 python finetune.py --model llama-13b \
 
 ### Important Notes
 1. Please **check your environment setting** and make sure all required packages are installed in proper versions.
-2. Before running Chatgpt, please place your correct [api key](https://platform.openai.com/settings/profile?tab=api-keys) in the code.
-3. Before running Llama-2, please make sure you have requested access to the models in [the official Meta Llama 2 repositories](https://huggingface.co/meta-llama).
+2. Before running ChatGPT, please place your own api key in the code. You can find your key [here](https://platform.openai.com/settings/profile?tab=api-keys).
+3. Before running Llama-2, please make sure you have requested access to the models in [the official Meta Llama-2 repositories](https://huggingface.co/meta-llama).

@@ -1,5 +1,5 @@
 ## Dataset Statistics
-| Dataset Version | Number of Dialogue | # Manipulative Dialogue : # Non-manipulative Dialogue |
+| Dataset Version | # Dialogue | # Manipulative Dialogue : # Non-manipulative Dialogue |
 |----------|----------|----------|
 | MentalManip_con | 2915 | 2.24:1 |
 | MentalManip_maj | 4000 | 2.38:1 |

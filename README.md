@@ -1,10 +1,11 @@
 # Datasets for Mental Manipulation Analysis
 
+### :star: **The MentalManip datasets are available [here](./mentalmanip_dataset/)**.
+
 This is the repository for ACL'24 accepted paper: **MentalManip: A Dataset For Fine-grained Analysis of Mental Manipulation in Conversations** [[arxiv version]](https://arxiv.org/abs/2405.16584).
 
 > Mental manipulation, a significant form of abuse in interpersonal conversations, presents a challenge to identify due to its context-dependent and often subtle nature. The detection of manipulative language is essential for protecting potential victims, yet the field of Natural Language Processing (NLP) currently faces a scarcity of resources and research on this topic. Our study addresses this gap by introducing a new dataset, named MentalManip, which consists of 4,000 annotated movie dialogues. This dataset enables a comprehensive analysis of mental manipulation, pinpointing both the techniques utilized for manipulation and the vulnerabilities targeted in victims. Our research further explores the effectiveness of leading-edge models in recognizing manipulative dialogue and its components through a series of experiments with various configurations. The results demonstrate that these models inadequately identify and categorize manipulative content. Attempts to improve their performance by fine-tuning with existing datasets on mental health and toxicity have not overcome these limitations. We anticipate that MentalManip will stimulate further research, leading to progress in both understanding and mitigating the impact of mental manipulation in conversations.
 
-### :arrow_right: **The MentalManip datasets are available [here](./mentalmanip_dataset/)**.
 
 <div align="center">
   <img src="figure.png" alt="figure.png" style="width:50%;">
@@ -25,48 +26,8 @@ MentalManip/
 ```
 
 ## 2. Datasets Description
-We provide three datasets about MentalManip here.
+Please check under the [dataset folder](./mentalmanip_dataset/).
 
-### 1) [mentalManip_detailed.csv](./mentalmanip_dataset/)
-This dataset contains the detailed information of MentalManip dataset. 
-Each row contains one dialogue and its three annotors' annotations.
-The columns are:
-- `inner_id`: inner id of the dialogue, from 0 to 3999.
-- `id`: unique id string of the dialogue for identification.
-- `dialogue`: the dialogue text.
-- `agreement`: the agreement of the three annotors.
-- `annotator_1`: the id of annotator 1 (e.g. AN12).
-- `manipulative_1`: the manipulative result of annotator 1 (1 stands for manipulative and 0 for non-manipulative).
-- `technique_1`: the technique result of annotator 1 (seperated by comma).
-- `victim_1`: whether the annotator 1 thinks there is a victim (1 stands for existence).
-- `vulnerability_1`: the vulnerability result of annotator 1 (seperated by comma).
-- `marks_1`: the manipulative parts marked by annotator 1.
-- `confidence_1`: the confidence score of annotator 1 (1 to 5).
-- (following columns are similar to annotator 1)
-
-### 2) [mentalmanip_con.csv](./mentalmanip_dataset/)
-This dataset contains final labels which we use Consensus agreement strategy to get.
-
-> **Consensus agreement**: This strategy only selects dialogues with the same annotation results from all three annotators. The accordant result becomes the final label.
-
-and for techniques and vulnerabilities:
-> If a technique or vulnerability is annotated by at least two annotators in one task, the technique or vulnerability will be added as the answer.
-
-The columns in `mentalmanip_con.csv` are:
-- `ID`: unique id string of the dialogue for identification.
-- `Dialogue`: the dialogue text.
-- `Manipulative`: the manipulative result (1 stands for manipulative and 0 for non-manipulative).
-- `Technique`: the technique result (seperated by comma).
-- `Vulnerability`: the vulnerability result (seperated by comma).
-
-### 3) [mentalmanip_maj.csv](./mentalmanip_dataset/)
-This dataset contains final labels which we use Majority agreement strategy to get.
-
-> **Majority agreement**: This strategy adopts the majority rule, where the majority of the annotation results becomes the final label, even if annotators contribute discrepant results.
-
-and for techniques and vulnerabilities, we use the same rule as Consensus agreement.
-
-The columns in `mentalmanip_maj.csv` are also the same as `mentalmanip_con.csv`.
 
 ## 3. To Run The Experiments
 ### Environment Setup

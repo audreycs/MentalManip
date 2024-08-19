@@ -1,6 +1,14 @@
-## Datasets Description
+## Dataset Statistics
+| Dataset Version | Number of Dialogue | Manipulative Dialogue : Non-manipulative Dialogue |
+|----------|----------|----------|
+| MentalManip_con | 2915 | 2.24:1 |
+| MentalManip_maj | 4000 | 2.38:1 |
 
-### 1) mentalManip_detailed.csv
+**Note**: The two dataset versions are obtained by how we generate the gold labels using annotation results. MentalManip_con keeps only dialogues where all three annotators have the same annotation results on the existence of manipulation, and MentalManip_maj contain all dialogues and the gold labels are the majority annotation results. Fpr more details about final label generation, please see the paper.
+
+## File Description
+
+### 1) mentalManip_detailed.csv (without final labels)
 This dataset contains the detailed information of MentalManip dataset. 
 Each row contains one dialogue and its three annotors' annotations.
 The columns are:
@@ -10,12 +18,12 @@ The columns are:
 - `agreement`: the agreement of the three annotors.
 - `annotator_1`: the id of annotator 1 (e.g. AN12).
 - `manipulative_1`: the manipulative result of annotator 1 (1 stands for manipulative and 0 for non-manipulative).
-- `technique_1`: the technique result of annotator 1 (seperated by comma).
-- `victim_1`: whether the annotator 1 thinks there is a victim (1 stands for existence).
-- `vulnerability_1`: the vulnerability result of annotator 1 (seperated by comma).
-- `marks_1`: the manipulative parts marked by annotator 1.
+- `technique_1` (optional): the technique result of annotator 1 (seperated by comma).
+- `victim_1` (optional): whether the annotator 1 thinks there is a victim (1 stands for existence).
+- `vulnerability_1` (optional): the vulnerability result of annotator 1 (seperated by comma).
+- `marks_1` (optional): the manipulative parts marked by annotator 1.
 - `confidence_1`: the confidence score of annotator 1 (1 to 5).
-- (following columns are similar to annotator 1)
+- (following columns are similar for annotator 2 and 3)
 
 ### 2) mentalmanip_con.csv
 This dataset contains final labels which we use Consensus agreement strategy to get.

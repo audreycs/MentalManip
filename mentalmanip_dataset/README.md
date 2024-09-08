@@ -1,7 +1,25 @@
-:loudspeaker: Announcement: 
+:loudspeaker: **Announcement**: 
 
-- [x] Added two column, original movie dialogue and movie name, in the `mentalmanip_detailed.csv` file.
+- [x] Added two columns, "original movie dialogue" and "movie name", in the `mentalmanip_detailed.csv` file.
 - [x] Uploaded the datasets to the [Hugging Face Repo](https://huggingface.co/datasets/audreyeleven/MentalManip).
+
+:heavy_exclamation_mark: **Note**:
+
+When processing the data files, I suggest using `csv` instead of `pandas.read_csv` because `pandas` may not read the columns correctly. For example
+```python
+# read .csv files
+with open("dialogue_detailed.csv", 'r', newline='', encoding='utf-8') as infile:
+    content = csv.reader(infile, delimiter=',', quoting=csv.QUOTE_MINIMAL)
+    for idx, row in enumerate(content):
+        ...
+
+# write .csv files
+with open("example.csv", 'w', newline='', encoding='utf-8') as outfile:
+    writer = csv.writer(outfile, delimiter=',', quoting=csv.QUOTE_MINIMAL)
+    for row in data:
+        writer.writerow(row)
+        ...
+```
 
 ## Dataset Statistics
 | Dataset Version | # Dialogue | # Manipulative Dialogue : # Non-manipulative Dialogue |

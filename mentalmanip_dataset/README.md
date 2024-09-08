@@ -1,7 +1,7 @@
 :loudspeaker: **Announcement**: 
 
 - [x] Added two columns, "original movie dialogue" and "movie name", in the `mentalmanip_detailed.csv` file.
-- [x] Uploaded the datasets to the [Hugging Face Repo](https://huggingface.co/datasets/audreyeleven/MentalManip).
+- [x] Uploaded the datasets to this [Hugging Face Repo](https://huggingface.co/datasets/audreyeleven/MentalManip).
 
 :heavy_exclamation_mark: **Note**:
 

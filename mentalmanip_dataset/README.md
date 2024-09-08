@@ -1,4 +1,7 @@
-:loudspeaker: Announcement: In the current version of MentalManip, we replaced the original speaker names with "Person1" and "Person2" to aviod introducing personal biases into the analysis of manipulation in conversations. We plan to reveal the speaker names in the updated version by providing the original movie dialogues to each dialogue sample.
+:loudspeaker: Announcement: 
+
+- [x] Added two column, original movie dialogue and movie name, in the `mentalmanip_detailed.csv` file.
+- [x] Uploaded the datasets to the [Hugging Face Repo](https://huggingface.co/datasets/audreyeleven/MentalManip).
 
 ## Dataset Statistics
 | Dataset Version | # Dialogue | # Manipulative Dialogue : # Non-manipulative Dialogue |

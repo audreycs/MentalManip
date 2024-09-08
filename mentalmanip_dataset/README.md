@@ -7,6 +7,8 @@
 
 When processing the data files, I suggest using `csv` instead of `pandas.read_csv` because `pandas` may not read the columns correctly. For example
 ```python
+import csv
+
 # read .csv files
 with open("dialogue_detailed.csv", 'r', newline='', encoding='utf-8') as infile:
     content = csv.reader(infile, delimiter=',', quoting=csv.QUOTE_MINIMAL)

@@ -38,6 +38,8 @@ The columns are:
 - `inner_id`: inner id of the dialogue, from 0 to 3999.
 - `id`: unique id string of the dialogue for identification.
 - `dialogue`: the dialogue text.
+- `original movie dialogue`: the orignal movie dialogue in Cornell Movie-Dialogs Corpus that this dialogue is based on.
+- `movie name`: the name of the movie from which the orignal movie dialogue is extracted.
 - `agreement`: the agreement of the three annotors.
 - `annotator_1`: the id of annotator 1 (e.g. AN12).
 - `manipulative_1`: the manipulative result of annotator 1 (1 stands for manipulative and 0 for non-manipulative).

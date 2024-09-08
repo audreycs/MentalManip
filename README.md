@@ -1,6 +1,6 @@
 # Datasets for Mental Manipulation Analysis
 
-### :star: **The datasets files of MentalManip are available [here](./mentalmanip_dataset/)**.
+### :star: **The datasets files of MentalManip are available [in this folder](./mentalmanip_dataset/)**. **You can also download on [Hugging Face](https://huggingface.co/datasets/audreyeleven/MentalManip)**.
 
 `This dataset follows CC BY-NC 4.0 license.`
 

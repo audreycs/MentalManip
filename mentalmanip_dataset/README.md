@@ -5,7 +5,7 @@
 
 :heavy_exclamation_mark: **Note**:
 
-When processing the data files, I suggest using `csv` instead of `pandas.read_csv` because `pandas` does not read the columns correctly. For example,
+When processing the data files, I suggest using `csv` instead of `pandas.read_csv` because `pandas` does not read the columns correctly. Example for uing `csv`:
 ```python
 import csv
 

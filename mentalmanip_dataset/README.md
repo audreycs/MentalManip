@@ -29,7 +29,7 @@ with open("example.csv", 'w', newline='', encoding='utf-8') as outfile:
 | MentalManip_con | 2915 | 2.24:1 |
 | MentalManip_maj | 4000 | 2.38:1 |
 
-**Note**: The two dataset versions are obtained by how we generate the gold labels using annotation results. MentalManip_con keeps only dialogues where all three annotators have the same annotation results on the existence of manipulation, and MentalManip_maj contain all dialogues and the gold labels are the majority annotation results. For more details about final label generation, please see the paper.
+**Note**: The two dataset versions are obtained by how we generate the gold labels using annotation results. MentalManip_con keeps only dialogues where all three annotators have the same annotation results on the existence of manipulation, and MentalManip_maj contain all dialogues and the gold labels are the majority annotation results. For more details about final label generation, please see the [paper](https://aclanthology.org/2024.acl-long.206/).
 
 ## File Description
 

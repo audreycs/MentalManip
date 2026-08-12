@@ -1,3 +1,5 @@
+
+
 # Datasets for Mental Manipulation Analysis
 
 Shield: [![CC BY-NC 4.0][cc-by-nc-shield]][cc-by-nc]
@@ -98,7 +100,7 @@ This folder contains code for reproducing the statistical analysis in the paper.
 This code file contains functions to:
 1. Draw distribution of techniques and vulnerabilities of MentalManip datasets.
 2. Draw distribution of sentiment scores of MentalManip datasets.
-3. Draw con-currence heat maps of techniques and vulnerabilities.
+3. Draw co-occurrence heat maps of techniques and vulnerabilities.
 4. Draw embedding space.
 
 ### 2) [statistics_comparison.py](./statistic_analysis/)
@@ -124,4 +126,3 @@ This code file contains functions to:
   url={https://aclanthology.org/2024.acl-long.206},
 }
 ```
-
